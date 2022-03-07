@@ -11,3 +11,4 @@ def readLine():
     print(line)
 
 threading.Timer(1.0, readLine).start()
+file.close()
