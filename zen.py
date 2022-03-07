@@ -1,15 +1,11 @@
 import threading
 
-file = open("README.md", 'r')
-line = True
-
 def readLine():
-    global line
-    if line:
-        threading.Timer(1.0, readLine).start()        
-    else:
-        file.close()
-    line = file.readline()
-    print(line)
+    with open("README.md", 'r') as file:
+        line = file.readline()
+        if line:
+            line = file.readline()
+            threading.Timer(1.0, readLine).start()
+        print(line)
 
 threading.Timer(1.0, readLine).start()
